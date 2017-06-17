@@ -26,11 +26,15 @@ func init() {
 	}
 }
 
-func CheckUsers() {
+func CheckUsers() bool {
 	users := GetUsers()
-	if len(users) == 0 {
-		SaveUser(domain.User{Username: *config.Conf.AdminUsername, Password: hashPassword(*config.Conf.AdminPassword)})
+	username := *config.Conf.AdminUsername
+	passwd := *config.Conf.AdminPassword
+	if len(users) == 0 && len(username) > 3 && len(passwd) > 3 {
+		SaveUser(domain.User{Username: username, Password: hashPassword(passwd)})
+		return true
 	}
+	return false
 }
 
 func GetDB() *leveldb.DB {

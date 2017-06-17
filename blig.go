@@ -14,7 +14,9 @@ import (
 
 func main() {
 	configure()
-	db.CheckUsers()
+	if !db.CheckUsers() {
+		log.Fatal("You need to give proper username and password parameters './blig -h'")
+	}
 	router := httprouter.New()
 	fs := justFilesFilesystem{http.Dir("public")}
 	router.ServeFiles("/static/*filepath", fs)
