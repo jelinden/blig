@@ -1,0 +1,129 @@
+a {
+    text-decoration: none;
+}
+a,a:visited,a:hover,a:active {color: #07C;}
+blockquote {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 20px;
+  padding-left: 15px;
+  border-left: 5px solid #ccc;
+}
+img {
+    max-width: 500px;
+}
+label {
+    font-size: 12px;
+    color: #696969;
+    text-align: right;
+    margin-left: auto;
+    margin-right: 10px;
+    margin-top: 8px;
+    display: block;
+    text-transform: uppercase;
+    font-weight: 200;
+}
+.markdown {
+    height: 90%;
+    width:100%;
+    margin-top: 5px;
+    margin-left: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    border: 1px solid #ccc;
+    outline: none;
+    clear:left;
+}
+.view {
+    height: 90%;
+    margin-left: 0;
+    margin-top: 5px;
+    margin-right: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-top: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+.navigation div, .navigation a {
+    margin: 0px;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 5px;
+    color: #fff;
+    text-decoration: none;
+}
+.navigation {
+    height: 100%;
+    padding-top: 15px;
+    background: #333;
+}
+.header {
+    color: white;
+    margin: 0px;
+    padding: 10px;
+    background-color: #008ed4;
+}
+#blogTitle {
+    margin-top: 1px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 5px;
+    padding: 5px;
+    width: 85%;
+    vertical-align: top;
+    display: inline;
+}
+#title {
+    display: block;
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 50px;
+}
+.inline {
+    float: left;
+}
+.login {
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 250px;
+}
+.login input { 
+    margin-top: 10px;
+    width: 250px;
+}
+label {
+    text-align: left;
+    margin-left: 5px;
+}
+.publish {
+    display: inline-block;
+}
+.button-success {
+    color: white !important;
+    border-radius: 4px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2) !important;
+}
+.button-success {
+    background: rgb(28, 184, 65) !important;
+}
+#published {
+    color: #696969;
+    display: block;
+    margin-left: 5px;
+    margin-top: 5px;
+}
+.list {
+    margin: 10px;
+}
+.blogpost {
+    margin-top: 7px;
+}
+.remove {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #696969;
+}
