@@ -1,0 +1,98 @@
+{
+	"ImportPath": "github.com/jelinden/blig",
+	"GoVersion": "go1.8",
+	"GodepVersion": "v79",
+	"Deps": [
+		{
+			"ImportPath": "github.com/golang/snappy",
+			"Rev": "d6668316e43571d7dde95be6fd077f96de002f8b"
+		},
+		{
+			"ImportPath": "github.com/julienschmidt/httprouter",
+			"Comment": "v1.1-29-g77366a4",
+			"Rev": "77366a47451a56bb3ba682481eed85b64fea14e8"
+		},
+		{
+			"ImportPath": "github.com/microcosm-cc/bluemonday",
+			"Rev": "4ac6f27528d0a3f2a59e0b0a6f6b3ff0bb89fe20"
+		},
+		{
+			"ImportPath": "github.com/shurcooL/sanitized_anchor_name",
+			"Rev": "10ef21a441db47d8b13ebcc5fd2310f636973c77"
+		},
+		{
+			"ImportPath": "github.com/syndtr/goleveldb/leveldb",
+			"Rev": "cfa635847112c5dc4782e128fa7e0d05fdbfb394"
+		},
+		{
+			"ImportPath": "github.com/syndtr/goleveldb/leveldb/cache",
+			"Rev": "cfa635847112c5dc4782e128fa7e0d05fdbfb394"
+		},
+		{
+			"ImportPath": "github.com/syndtr/goleveldb/leveldb/comparer",
+			"Rev": "cfa635847112c5dc4782e128fa7e0d05fdbfb394"
+		},
+		{
+			"ImportPath": "github.com/syndtr/goleveldb/leveldb/errors",
+			"Rev": "cfa635847112c5dc4782e128fa7e0d05fdbfb394"
+		},
+		{
+			"ImportPath": "github.com/syndtr/goleveldb/leveldb/filter",
+			"Rev": "cfa635847112c5dc4782e128fa7e0d05fdbfb394"
+		},
+		{
+			"ImportPath": "github.com/syndtr/goleveldb/leveldb/iterator",
+			"Rev": "cfa635847112c5dc4782e128fa7e0d05fdbfb394"
+		},
+		{
+			"ImportPath": "github.com/syndtr/goleveldb/leveldb/journal",
+			"Rev": "cfa635847112c5dc4782e128fa7e0d05fdbfb394"
+		},
+		{
+			"ImportPath": "github.com/syndtr/goleveldb/leveldb/memdb",
+			"Rev": "cfa635847112c5dc4782e128fa7e0d05fdbfb394"
+		},
+		{
+			"ImportPath": "github.com/syndtr/goleveldb/leveldb/opt",
+			"Rev": "cfa635847112c5dc4782e128fa7e0d05fdbfb394"
+		},
+		{
+			"ImportPath": "github.com/syndtr/goleveldb/leveldb/storage",
+			"Rev": "cfa635847112c5dc4782e128fa7e0d05fdbfb394"
+		},
+		{
+			"ImportPath": "github.com/syndtr/goleveldb/leveldb/table",
+			"Rev": "cfa635847112c5dc4782e128fa7e0d05fdbfb394"
+		},
+		{
+			"ImportPath": "github.com/syndtr/goleveldb/leveldb/util",
+			"Rev": "cfa635847112c5dc4782e128fa7e0d05fdbfb394"
+		},
+		{
+			"ImportPath": "github.com/ventu-io/go-shortid",
+			"Comment": "v1.0-7-g935de67",
+			"Rev": "935de6796a71e222e8a8a141ead882d70b6ba6d0"
+		},
+		{
+			"ImportPath": "golang.org/x/crypto/bcrypt",
+			"Rev": "459e26527287adbc2adcc5d0d49abff9a5f315a7"
+		},
+		{
+			"ImportPath": "golang.org/x/crypto/blowfish",
+			"Rev": "459e26527287adbc2adcc5d0d49abff9a5f315a7"
+		},
+		{
+			"ImportPath": "golang.org/x/net/html",
+			"Rev": "e4fa1c5465ad6111f206fc92186b8c83d64adbe1"
+		},
+		{
+			"ImportPath": "golang.org/x/net/html/atom",
+			"Rev": "e4fa1c5465ad6111f206fc92186b8c83d64adbe1"
+		},
+		{
+			"ImportPath": "gopkg.in/russross/blackfriday.v2",
+			"Comment": "v1.4-182-g70c446a",
+			"Rev": "70c446a327c4e69c0f661dc092d9729c3af7472c"
+		}
+	]
+}
