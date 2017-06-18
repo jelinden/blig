@@ -2,6 +2,11 @@ package domain
 
 import "time"
 
+type Blog struct {
+	BlogName  string
+	BlogPosts []BlogPost
+}
+
 type BlogPost struct {
 	ID        string
 	Title     string

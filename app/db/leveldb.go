@@ -17,6 +17,7 @@ var db *leveldb.DB
 
 const userPrefix = "user-"
 const blogPrefix = "blog-"
+const commonPrefix = "common-"
 
 func init() {
 	var err error
@@ -30,7 +31,9 @@ func CheckUsers() bool {
 	users := GetUsers()
 	username := *config.Conf.AdminUsername
 	passwd := *config.Conf.AdminPassword
-	if len(users) == 0 && len(username) > 3 && len(passwd) > 3 {
+	if len(users) > 0 {
+		return true
+	} else if len(users) == 0 && len(username) > 3 && len(passwd) > 3 {
 		SaveUser(domain.User{Username: username, Password: hashPassword(passwd)})
 		return true
 	}
@@ -110,6 +113,21 @@ func SaveUser(user domain.User) {
 	if err != nil {
 		log.Println("saving blog post", user.Username, "failed")
 	}
+}
+
+func SaveBlogName(blogName string) {
+	err := db.Put([]byte(commonPrefix+"blogName"), []byte(blogName), nil)
+	if err != nil {
+		log.Println("saving blog name", blogName, "failed")
+	}
+}
+
+func GetBlogName() string {
+	name, err := db.Get([]byte(commonPrefix+"blogName"), nil)
+	if err != nil {
+		log.Println("getting blog name failed", err.Error())
+	}
+	return string(name)
 }
 
 func DeletePost(id string) {

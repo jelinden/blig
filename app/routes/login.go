@@ -36,7 +36,7 @@ func AuthHandler(next http.Handler) httprouter.Handle {
 		cookie, err := r.Cookie("login")
 		if err != nil || !strings.EqualFold(cookie.Value, Loggedin) {
 			time.Sleep(2 * time.Second)
-			http.Redirect(w, r, "/login?loginfailed=true", http.StatusFound)
+			http.Redirect(w, r, "/admin/login?loginfailed=true", http.StatusFound)
 		} else {
 			next.ServeHTTP(w, r)
 		}
@@ -48,9 +48,9 @@ func LoginPost(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	if checkPasswordHash(r.FormValue("password"), user.Password) {
 		Loggedin = stringWithCharset()
 		http.SetCookie(w, &http.Cookie{Name: "login", Value: Loggedin})
-		http.Redirect(w, r, "/", http.StatusFound)
+		http.Redirect(w, r, "/admin/", http.StatusFound)
 	} else {
-		http.Redirect(w, r, "/login?loginfailed=true", http.StatusFound)
+		http.Redirect(w, r, "/admin/login?loginfailed=true", http.StatusFound)
 	}
 }
 

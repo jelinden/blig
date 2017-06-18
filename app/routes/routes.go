@@ -30,13 +30,14 @@ func New(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Println("generating id failed", err.Error())
 	}
-	http.Redirect(w, r, "/post/id/"+id, http.StatusFound)
+	http.Redirect(w, r, "/admin/post/id/"+id, http.StatusFound)
 }
 
 func Root(w http.ResponseWriter, r *http.Request) {
 	blogs := db.GetBlogs()
 	sort.Sort(domain.TimeSlice(blogs))
-	renderTemplateRoot(w, "root", blogs)
+	blog := domain.Blog{BlogName: db.GetBlogName(), BlogPosts: blogs}
+	renderTemplateRoot(w, "root", blog)
 }
 
 func Index(w http.ResponseWriter, r *http.Request) {
@@ -125,7 +126,7 @@ func DeletePost(w http.ResponseWriter, r *http.Request) {
 	if id != "" {
 		db.DeletePost(id)
 	}
-	http.Redirect(w, r, "/", http.StatusFound)
+	http.Redirect(w, r, "/admin/", http.StatusFound)
 }
 
 func makeDirs(ps httprouter.Params) {
@@ -135,6 +136,11 @@ func makeDirs(ps httprouter.Params) {
 	if _, err := os.Stat("./public/images/" + ps.ByName("id")); os.IsNotExist(err) {
 		os.Mkdir("./public/images/"+ps.ByName("id"), 0744)
 	}
+}
+
+func SaveBlogName(w http.ResponseWriter, r *http.Request) {
+	db.SaveBlogName(r.FormValue("blogName"))
+	http.Redirect(w, r, "/admin/", http.StatusOK)
 }
 
 func uploadFailed(w http.ResponseWriter, r *http.Request, err string) {
@@ -149,8 +155,8 @@ func renderTemplate(w http.ResponseWriter, tmpl string, blogPost domain.BlogPost
 	}
 }
 
-func renderTemplateRoot(w http.ResponseWriter, tmpl string, blogs []domain.BlogPost) {
-	err := templates.ExecuteTemplate(w, tmpl, blogs)
+func renderTemplateRoot(w http.ResponseWriter, tmpl string, blog domain.Blog) {
+	err := templates.ExecuteTemplate(w, tmpl, blog)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
