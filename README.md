@@ -23,7 +23,11 @@ This is the only user the blog will have.
 ## using
 
 github.com/julienschmidt/httprouter
+
 github.com/microcosm-cc/bluemonday
+
 github.com/ventu-io/go-shortid
+
 gopkg.in/russross/blackfriday.v2
+
 github.com/syndtr/goleveldb/leveldb
