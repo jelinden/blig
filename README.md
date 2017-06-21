@@ -17,3 +17,13 @@ When starting for the first time, you need to give users credentials as paramete
 This is the only user the blog will have.
 
 ![](https://github.com/jelinden/blig/raw/master/blig.png)
+
+
+
+## using
+
+github.com/julienschmidt/httprouter
+github.com/microcosm-cc/bluemonday
+github.com/ventu-io/go-shortid
+gopkg.in/russross/blackfriday.v2
+github.com/syndtr/goleveldb/leveldb
