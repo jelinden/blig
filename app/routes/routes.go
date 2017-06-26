@@ -18,7 +18,7 @@ import (
 	blackfriday "gopkg.in/russross/blackfriday.v2"
 )
 
-var templates = template.Must(template.ParseGlob("public/tmpl/*"))
+var templates = template.Must(template.ParseGlob("public/admin/tmpl/*"))
 var p = bluemonday.UGCPolicy()
 
 func init() {
@@ -107,7 +107,7 @@ func FilePost(w http.ResponseWriter, r *http.Request) {
 	}
 	defer file.Close()
 	makeDirs(ps)
-	filePath := "./public/images/" + ps.ByName("id") + "/" + handler.Filename
+	filePath := "./public/admin/images/" + ps.ByName("id") + "/" + handler.Filename
 	f, err := os.OpenFile(filePath, os.O_WRONLY|os.O_CREATE, 0666)
 	if err != nil {
 		log.Println("saving file failed", err.Error())
@@ -117,7 +117,7 @@ func FilePost(w http.ResponseWriter, r *http.Request) {
 	defer f.Close()
 	io.Copy(f, file)
 	w.WriteHeader(200)
-	w.Write([]byte("{\"fileName\":\"" + "/static/images/" + ps.ByName("id") + "/" + handler.Filename + "\"}"))
+	w.Write([]byte("{\"fileName\":\"" + "/admin/static/images/" + ps.ByName("id") + "/" + handler.Filename + "\"}"))
 }
 
 func DeletePost(w http.ResponseWriter, r *http.Request) {
@@ -130,11 +130,11 @@ func DeletePost(w http.ResponseWriter, r *http.Request) {
 }
 
 func makeDirs(ps httprouter.Params) {
-	if _, err := os.Stat("./public/images"); os.IsNotExist(err) {
+	if _, err := os.Stat("./public/admin/images"); os.IsNotExist(err) {
 		os.Mkdir("./public/images", 0744)
 	}
-	if _, err := os.Stat("./public/images/" + ps.ByName("id")); os.IsNotExist(err) {
-		os.Mkdir("./public/images/"+ps.ByName("id"), 0744)
+	if _, err := os.Stat("./public/admin/images/" + ps.ByName("id")); os.IsNotExist(err) {
+		os.Mkdir("./public/admin/images/"+ps.ByName("id"), 0744)
 	}
 }
 

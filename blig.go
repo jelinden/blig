@@ -18,8 +18,8 @@ func main() {
 		log.Fatal("You need to give proper username and password parameters './blig -h'")
 	}
 	router := httprouter.New()
-	fs := justFilesFilesystem{http.Dir("public")}
-	router.ServeFiles("/static/*filepath", fs)
+	fs := justFilesFilesystem{http.Dir("public/admin")}
+	router.ServeFiles("/admin/static/*filepath", fs)
 	router.GET("/admin/", routes.AuthHandler(http.HandlerFunc(routes.Root)))
 	router.GET("/admin/post/new", routes.AuthHandler(http.HandlerFunc(routes.New)))
 	router.GET("/admin/post/id/:id", routes.AuthHandler(http.HandlerFunc(routes.Index)))
