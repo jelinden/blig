@@ -20,6 +20,8 @@ func main() {
 	router := httprouter.New()
 	fs := justFilesFilesystem{http.Dir("public/admin")}
 	router.ServeFiles("/admin/static/*filepath", fs)
+	fsPub := justFilesFilesystem{http.Dir("public")}
+	router.ServeFiles("/static/*filepath", fsPub)
 	router.GET("/admin/", routes.AuthHandler(http.HandlerFunc(routes.Root)))
 	router.GET("/admin/post/new", routes.AuthHandler(http.HandlerFunc(routes.New)))
 	router.GET("/admin/post/id/:id", routes.AuthHandler(http.HandlerFunc(routes.Index)))
