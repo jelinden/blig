@@ -12,13 +12,14 @@ import (
 
 	"github.com/jelinden/blig/app/db"
 	"github.com/jelinden/blig/app/domain"
+	"github.com/jelinden/blig/app/util"
 	"github.com/julienschmidt/httprouter"
 	"github.com/microcosm-cc/bluemonday"
 	"github.com/ventu-io/go-shortid"
 	blackfriday "gopkg.in/russross/blackfriday.v2"
 )
 
-var templates = template.Must(template.ParseGlob("public/admin/tmpl/*"))
+var templates = template.Must(template.ParseGlob("public/tmpl/*"))
 var p = bluemonday.UGCPolicy()
 
 func init() {
@@ -33,11 +34,11 @@ func New(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/admin/post/id/"+id, http.StatusFound)
 }
 
-func Root(w http.ResponseWriter, r *http.Request) {
+func AdminRoot(w http.ResponseWriter, r *http.Request) {
 	blogs := db.GetBlogs()
 	sort.Sort(domain.TimeSlice(blogs))
 	blog := domain.Blog{BlogName: db.GetBlogName(), BlogPosts: blogs}
-	renderTemplateRoot(w, "root", blog)
+	renderTemplateRoot(w, "adminroot", blog)
 }
 
 func Index(w http.ResponseWriter, r *http.Request) {
@@ -61,8 +62,9 @@ func Post(w http.ResponseWriter, r *http.Request) {
 	blogPost := domain.BlogPost{
 		ID:        id,
 		Title:     string(p.SanitizeBytes([]byte(r.FormValue("blogTitle")))),
+		Slug:      util.Slugify(r.FormValue("blogTitle")),
 		Markdown:  r.FormValue("blogText"),
-		Post:      string(html),
+		Post:      template.HTML(html),
 		Date:      time.Now().UTC(),
 		Published: oldPost.Published,
 	}
@@ -83,7 +85,7 @@ func Publish(w http.ResponseWriter, r *http.Request) {
 	blogPost := domain.BlogPost{
 		ID:        id,
 		Title:     string(p.SanitizeBytes([]byte(r.FormValue("blogTitle")))),
-		Post:      string(html),
+		Post:      template.HTML(html),
 		Markdown:  oldPost.Markdown,
 		Date:      time.Now().UTC(),
 		Published: true,
@@ -148,7 +150,7 @@ func uploadFailed(w http.ResponseWriter, r *http.Request, err string) {
 	w.Write([]byte(err))
 }
 
-func renderTemplate(w http.ResponseWriter, tmpl string, blogPost domain.BlogPost) {
+func renderTemplate(w http.ResponseWriter, tmpl string, blogPost interface{}) {
 	err := templates.ExecuteTemplate(w, tmpl, blogPost)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)

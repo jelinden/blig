@@ -22,7 +22,7 @@ func main() {
 	router.ServeFiles("/admin/static/*filepath", fs)
 	fsPub := justFilesFilesystem{http.Dir("public")}
 	router.ServeFiles("/static/*filepath", fsPub)
-	router.GET("/admin/", routes.AuthHandler(http.HandlerFunc(routes.Root)))
+	router.GET("/admin/", routes.AuthHandler(http.HandlerFunc(routes.AdminRoot)))
 	router.GET("/admin/post/new", routes.AuthHandler(http.HandlerFunc(routes.New)))
 	router.GET("/admin/post/id/:id", routes.AuthHandler(http.HandlerFunc(routes.Index)))
 	router.POST("/admin/file/post/:id", routes.AuthHandler(http.HandlerFunc(routes.FilePost)))
@@ -32,6 +32,9 @@ func main() {
 	router.POST("/admin/save/blogname", routes.AuthHandler(http.HandlerFunc(routes.SaveBlogName)))
 	router.GET("/admin/login", routes.Login)
 	router.POST("/admin/login", routes.LoginPost)
+
+	router.GET("/", routes.Root)
+	router.GET("/blog/:slug/:id", routes.Blog)
 
 	log.Fatal(http.ListenAndServe(":8080", router))
 }

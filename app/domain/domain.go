@@ -1,16 +1,25 @@
 package domain
 
-import "time"
+import (
+	"html/template"
+	"time"
+)
 
 type Blog struct {
 	BlogName  string
 	BlogPosts []BlogPost
 }
 
+type BlogItem struct {
+	BlogName string
+	BlogItem BlogPost
+}
+
 type BlogPost struct {
 	ID        string
 	Title     string
-	Post      string
+	Slug      string
+	Post      template.HTML
 	Markdown  string
 	Date      time.Time
 	Published bool
