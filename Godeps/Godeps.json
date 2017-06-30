@@ -90,6 +90,14 @@
 			"Rev": "e4fa1c5465ad6111f206fc92186b8c83d64adbe1"
 		},
 		{
+			"ImportPath": "golang.org/x/text/transform",
+			"Rev": "ccbd3f7822129ff389f8ca4858a9b9d4d910531c"
+		},
+		{
+			"ImportPath": "golang.org/x/text/unicode/norm",
+			"Rev": "ccbd3f7822129ff389f8ca4858a9b9d4d910531c"
+		},
+		{
 			"ImportPath": "gopkg.in/russross/blackfriday.v2",
 			"Comment": "v1.4-182-g70c446a",
 			"Rev": "70c446a327c4e69c0f661dc092d9729c3af7472c"
