@@ -4,11 +4,11 @@ import (
 	"flag"
 	"log"
 	"net/http"
-	"os"
 
 	"github.com/jelinden/blig/app/config"
 	"github.com/jelinden/blig/app/db"
 	"github.com/jelinden/blig/app/routes"
+	"github.com/jelinden/blig/app/util"
 	"github.com/julienschmidt/httprouter"
 )
 
@@ -18,10 +18,12 @@ func main() {
 		log.Fatal("You need to give proper username and password parameters './blig -h'")
 	}
 	router := httprouter.New()
-	fs := justFilesFilesystem{http.Dir("public/admin")}
+	router.RedirectFixedPath = true
+	router.RedirectTrailingSlash = true
+	fs := util.JustFilesFilesystem{Fs: http.Dir("public/admin")}
 	router.ServeFiles("/admin/static/*filepath", fs)
-	fsPub := justFilesFilesystem{http.Dir("public")}
-	router.ServeFiles("/static/*filepath", fsPub)
+	fsStatic := util.JustFilesFilesystem{Fs: http.Dir("public/")}
+	router.Handler("GET", "/static/*filepath", http.StripPrefix("/static", util.GH(http.FileServer(fsStatic))))
 	router.GET("/admin/", routes.AuthHandler(http.HandlerFunc(routes.AdminRoot)))
 	router.GET("/admin/post/new", routes.AuthHandler(http.HandlerFunc(routes.New)))
 	router.GET("/admin/post/id/:id", routes.AuthHandler(http.HandlerFunc(routes.Index)))
@@ -33,8 +35,8 @@ func main() {
 	router.GET("/admin/login", routes.Login)
 	router.POST("/admin/login", routes.LoginPost)
 
-	router.GET("/", routes.Root)
-	router.GET("/blog/:slug/:id", routes.Blog)
+	router.GET("/", util.MakeGzipHandler(routes.Root))
+	router.GET("/blog/:slug/:id", util.MakeGzipHandler(routes.Blog))
 
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
@@ -44,20 +46,4 @@ func configure() {
 	password := flag.String("password", "bar", "a string")
 	flag.Parse()
 	config.SetConfig(config.Config{AdminUsername: username, AdminPassword: password})
-}
-
-type justFilesFilesystem struct {
-	Fs http.FileSystem
-}
-
-func (fs justFilesFilesystem) Open(name string) (http.File, error) {
-	f, err := fs.Fs.Open(name)
-	if err != nil {
-		return nil, err
-	}
-	stat, err := f.Stat()
-	if stat.IsDir() {
-		return nil, os.ErrNotExist
-	}
-	return f, nil
 }

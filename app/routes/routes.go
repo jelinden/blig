@@ -158,6 +158,7 @@ func uploadFailed(w http.ResponseWriter, r *http.Request, err string) {
 func renderTemplate(w http.ResponseWriter, tmpl string, blogPost interface{}) {
 	err := templates.ExecuteTemplate(w, tmpl, blogPost)
 	if err != nil {
+		log.Println("executing template failed", err.Error())
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
 }
