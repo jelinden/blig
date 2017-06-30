@@ -85,6 +85,7 @@ func Publish(w http.ResponseWriter, r *http.Request) {
 	blogPost := domain.BlogPost{
 		ID:        id,
 		Title:     string(p.SanitizeBytes([]byte(r.FormValue("blogTitle")))),
+		Slug:      util.Slugify(r.FormValue("blogTitle")),
 		Post:      template.HTML(html),
 		Markdown:  oldPost.Markdown,
 		Date:      time.Now().UTC(),
