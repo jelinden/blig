@@ -1,12 +1,22 @@
 package util
 
-import "strings"
+import (
+	"log"
+	"strings"
+)
 
 func ImgClass(html string) string {
-	count := strings.Count(html, "<img src=")
+	stripped := stripExtraLines(html)
+	count := strings.Count(stripped, "<img src=")
 	for i := 0; i <= count; i++ {
-		index := strings.Index(html, "<img src=") + 4
-		html = html[:index] + " class=\"pure-img\"" + html[index:]
+		index := strings.Index(stripped, "<img src=") + 4
+		stripped = stripped[:index] + " class=\"pure-img\"" + stripped[index:]
 	}
-	return html
+
+	log.Println(stripped)
+	return stripped
+}
+
+func stripExtraLines(html string) string {
+	return strings.Replace(html, "\n\n", "\n", -1)
 }

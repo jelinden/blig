@@ -52,7 +52,9 @@ func Index(w http.ResponseWriter, r *http.Request) {
 }
 
 func Post(w http.ResponseWriter, r *http.Request) {
-	unsafe := blackfriday.Run([]byte(r.FormValue("blogText")))
+	blogText := r.FormValue("blogText")
+	blogTitle := r.FormValue("blogTitle")
+	unsafe := blackfriday.Run([]byte(blogText))
 	sanitized := p.SanitizeBytes(unsafe)
 	html := []byte(util.ImgClass(string(sanitized)))
 	var id = r.FormValue("blogId")
@@ -62,9 +64,9 @@ func Post(w http.ResponseWriter, r *http.Request) {
 	oldPost := db.GetBlogWithID(id)
 	blogPost := domain.BlogPost{
 		ID:        id,
-		Title:     string(p.SanitizeBytes([]byte(r.FormValue("blogTitle")))),
-		Slug:      util.Slugify(r.FormValue("blogTitle")),
-		Markdown:  r.FormValue("blogText"),
+		Title:     string(p.SanitizeBytes([]byte(blogTitle))),
+		Slug:      util.Slugify(blogTitle),
+		Markdown:  blogText,
 		Post:      template.HTML(html),
 		Date:      time.Now().UTC(),
 		Published: oldPost.Published,
