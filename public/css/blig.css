@@ -18,10 +18,12 @@ header {
   margin-top: 20px;
   margin-bottom: 20px;
   background-color: #d3d3d3;
-  height: 40%;
+  background-image: url("/static/images/helsinki.jpg");
+  background-repeat: no-repeat;
+  height: 50%;
   width: 96%;
   position:relative;
-  border-bottom: 40px solid rgba(45, 45, 45, 0.54);
+  border-bottom: 40px solid rgba(45, 45, 45, 0.2);
 }
 header h1 { 
   font-size: 28px;
@@ -29,7 +31,7 @@ header h1 {
   text-align: center;
   color: white;
   position:absolute;
-  top:50%;
+  top:20%;
   height:10em;
   left: 10%;
   margin-top: -10px;
