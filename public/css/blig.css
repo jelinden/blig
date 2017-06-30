@@ -60,3 +60,6 @@ main {
 img {
   max-width: 1000px;
 }
+code {
+  font-size: 0.8rem !important;
+}
