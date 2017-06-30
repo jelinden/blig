@@ -53,7 +53,8 @@ func Index(w http.ResponseWriter, r *http.Request) {
 
 func Post(w http.ResponseWriter, r *http.Request) {
 	unsafe := blackfriday.Run([]byte(r.FormValue("blogText")))
-	html := p.SanitizeBytes(unsafe)
+	sanitized := p.SanitizeBytes(unsafe)
+	html := []byte(util.ImgClass(string(sanitized)))
 	var id = r.FormValue("blogId")
 	if id == "" {
 		id, _ = shortid.Generate()
@@ -76,7 +77,8 @@ func Post(w http.ResponseWriter, r *http.Request) {
 
 func Publish(w http.ResponseWriter, r *http.Request) {
 	unsafe := blackfriday.Run([]byte(r.FormValue("blogText")))
-	html := p.SanitizeBytes(unsafe)
+	sanitized := p.SanitizeBytes(unsafe)
+	html := []byte(util.ImgClass(string(sanitized)))
 	var id = r.FormValue("blogId")
 	if id == "" {
 		id, _ = shortid.Generate()
