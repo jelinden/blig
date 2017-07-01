@@ -23,7 +23,6 @@ header {
   height: 60%;
   width: 96%;
   position:relative;
-  border-bottom: 40px solid rgba(45, 45, 45, 0.2);
 }
 header h1 { 
   font-size: 28px;
