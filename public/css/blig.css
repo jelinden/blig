@@ -12,6 +12,18 @@ a:link, a:visited {
 body {
   margin: 5px;
 }
+h1, h2, h3 {
+  font-weight: bold;
+}
+h1 {
+  font-size: 1.5rem !important;
+}
+h2 {
+  font-size: 1.3rem !important;
+}
+h3 {
+  font-size: 1.1rem !important;
+}
 header {
   margin-left: auto;
   margin-right: auto;
@@ -54,7 +66,7 @@ main {
 .title, .title a {
   margin-bottom: 20px;
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1.6rem;
 }
 img {
   max-width: 1000px;
