@@ -38,6 +38,8 @@ func main() {
 	router.GET("/", util.MakeGzipHandler(routes.Root))
 	router.GET("/blog/:slug/:id", util.MakeGzipHandler(routes.Blog))
 
+	router.GET("/rss", util.MakeGzipHandler(routes.RSS))
+
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
 
