@@ -3,10 +3,12 @@ package routes
 import (
 	"log"
 	"net/http"
+	"sort"
 	"time"
 
 	"github.com/gorilla/feeds"
 	"github.com/jelinden/blig/app/db"
+	"github.com/jelinden/blig/app/domain"
 	"github.com/julienschmidt/httprouter"
 )
 
@@ -19,6 +21,7 @@ func RSS(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	}
 
 	blogs := db.GetBlogs()
+	sort.Sort(domain.TimeSlice(blogs))
 	feed.Items = []*feeds.Item{}
 	for i, blog := range blogs {
 		if i < 5 {
