@@ -12,6 +12,8 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
+const port = ":8080"
+
 func main() {
 	configure()
 	if !db.CheckUsers() {
@@ -38,10 +40,13 @@ func main() {
 	router.GET("/", util.MakeGzipHandler(routes.Root))
 	router.GET("/blog/:slug/:id", util.MakeGzipHandler(routes.Blog))
 
+	router.GET("/health", func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+		w.Write([]byte("OK"))
+	})
 	router.GET("/rss", util.MakeGzipHandler(routes.RSS))
-	router.GET("/sitemap.xml", routes.Sitemap)
+	router.GET("/sitemap.xml", util.MakeGzipHandler(routes.Sitemap))
 
-	log.Fatal(http.ListenAndServe(":8080", router))
+	log.Fatal(http.ListenAndServe(port, router))
 }
 
 func configure() {
