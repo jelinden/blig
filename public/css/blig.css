@@ -47,12 +47,11 @@ main {
   main { padding: 2rem; }
 }
 .date {
-  font-size: 0.9rem;
-  color: rgba(45, 45, 45, 0.54);
-  letter-spacing: -0.7px;
-  font-family: Circular,Verdana,Arial,sans-serif;
+  font-size: 0.8rem;
+  color: #767676;
+  font-family: "Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
 }
-.title {
+.title, .title a {
   margin-bottom: 20px;
   font-weight: bold;
   font-size: 1.2rem;
