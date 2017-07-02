@@ -23,8 +23,8 @@
                     <div>
                         {{ range .BlogPosts }}
                             <div class="blogpost">
-                                {{ .Date.Format "02.01.2006 15:04:05" }} <a href="/admin/post/id/{{ .ID }}">{{ .Title }}</a>  
-                                {{ if eq .Published true }}Published{{ end }}
+                                {{ .Modified.Format "02.01.2006 15:04:05" }} <a href="/admin/post/id/{{ .ID }}">{{ .Title }}</a>  
+                                {{ if eq .Published true }}Published {{ .Date.Format "02.01.2006 15:04:05" }}{{ end }}
                                 [ <a class="remove" href="/admin/post/delete/{{ .ID }}">Delete</a> ]
                             </div>
                         {{ end }}

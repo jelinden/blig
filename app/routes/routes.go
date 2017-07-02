@@ -68,8 +68,11 @@ func Post(w http.ResponseWriter, r *http.Request) {
 		Slug:      util.Slugify(blogTitle),
 		Markdown:  blogText,
 		Post:      template.HTML(html),
-		Date:      time.Now().UTC(),
+		Modified:  time.Now().UTC(),
 		Published: oldPost.Published,
+	}
+	if !oldPost.Date.IsZero() {
+		blogPost.Date = oldPost.Date
 	}
 	if len(blogPost.Title) > 5 {
 		db.SaveBlog(blogPost)
@@ -92,8 +95,13 @@ func Publish(w http.ResponseWriter, r *http.Request) {
 		Slug:      util.Slugify(r.FormValue("blogTitle")),
 		Post:      template.HTML(html),
 		Markdown:  oldPost.Markdown,
-		Date:      time.Now().UTC(),
+		Modified:  time.Now().UTC(),
 		Published: true,
+	}
+	if !oldPost.Date.IsZero() {
+		blogPost.Date = oldPost.Date
+	} else {
+		blogPost.Date = time.Now().UTC()
 	}
 	if len(blogPost.Title) < 5 {
 		w.Write([]byte("Title was not long enough"))

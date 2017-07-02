@@ -27,7 +27,7 @@ func Sitemap(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	for _, blog := range blogs {
 		sitemap.Add(s, &sitemap.URL{
 			Loc:        mainURL + "/" + blog.Slug + "/" + blog.ID,
-			LastMod:    &now,
+			LastMod:    &blog.Modified,
 			ChangeFreq: sitemap.Daily,
 		})
 	}

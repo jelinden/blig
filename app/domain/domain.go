@@ -22,6 +22,7 @@ type BlogPost struct {
 	Post      template.HTML
 	Markdown  string
 	Date      time.Time
+	Modified  time.Time
 	Published bool
 }
 
