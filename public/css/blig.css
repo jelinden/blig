@@ -69,8 +69,11 @@ main {
   font-weight: bold;
   font-size: 1.6rem;
 }
-img {
-  max-width: 1000px;
+.pure-img {
+  max-width: 70% !important;
+  max-height: 700px !important;
+  margin-left: auto;
+  margin-right: auto;
 }
 code {
   font-size: 0.8rem !important;
