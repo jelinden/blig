@@ -32,6 +32,7 @@ header {
   background-color: #d3d3d3;
   background-image: url("/static/images/helsinki.jpg");
   background-repeat: no-repeat;
+  background-size: cover;
   height: 60%;
   width: 96%;
   position:relative;
