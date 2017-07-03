@@ -26,7 +26,6 @@ var zippers = sync.Pool{New: func() interface{} {
 func GH(fn http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Add("Vary", "Accept-Encoding")
-		w.Header().Set("Content-Type", "text/html")
 		if !strings.Contains(r.Header.Get("Accept-Encoding"), "gzip") {
 			fn.ServeHTTP(w, r)
 			return
