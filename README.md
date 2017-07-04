@@ -22,12 +22,20 @@ This is the only user the blog will have.
 
 ## using
 
-github.com/julienschmidt/httprouter
-
-github.com/microcosm-cc/bluemonday
-
-github.com/ventu-io/go-shortid
-
-gopkg.in/russross/blackfriday.v2
+### LevelDB - key/value database
 
 github.com/syndtr/goleveldb/leveldb
+
+### Others
+
+gopkg.in/russross/blackfriday.v2 - markdown processor
+
+github.com/julienschmidt/httprouter - fast router
+
+github.com/microcosm-cc/bluemonday - html sanitizer
+
+github.com/ventu-io/go-shortid - short ids
+
+
+
+
