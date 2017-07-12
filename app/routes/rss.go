@@ -9,7 +9,6 @@ import (
 	"github.com/gorilla/feeds"
 	"github.com/jelinden/blig/app/db"
 	"github.com/jelinden/blig/app/domain"
-	"github.com/jelinden/blig/app/util"
 	"github.com/julienschmidt/httprouter"
 )
 
@@ -21,7 +20,7 @@ func RSS(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		Created:     time.Now(),
 	}
 
-	blogs := util.OnlyPublished(db.GetBlogs())
+	blogs := db.GetPublishedBlogs()
 	sort.Sort(domain.TimeSlice(blogs))
 	feed.Items = []*feeds.Item{}
 	for i, blog := range blogs {

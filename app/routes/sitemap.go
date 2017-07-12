@@ -9,7 +9,6 @@ import (
 	"github.com/jelinden/blig/app/db"
 	"github.com/jelinden/blig/app/domain"
 	"github.com/jelinden/blig/app/sitemap"
-	"github.com/jelinden/blig/app/util"
 	"github.com/julienschmidt/httprouter"
 )
 
@@ -23,7 +22,7 @@ func Sitemap(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		LastMod:    &now,
 		ChangeFreq: sitemap.Daily,
 	})
-	blogs := util.OnlyPublished(db.GetBlogs())
+	blogs := db.GetPublishedBlogs()
 	sort.Sort(domain.TimeSlice(blogs))
 	for _, blog := range blogs {
 		sitemap.Add(s, &sitemap.URL{

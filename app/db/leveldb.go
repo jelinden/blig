@@ -71,6 +71,27 @@ func GetUsers() []domain.User {
 	return users
 }
 
+func GetPublishedBlogs() []domain.BlogPost {
+	iter := db.NewIterator(util.BytesPrefix([]byte(blogPrefix)), nil)
+	blogs := []domain.BlogPost{}
+	for iter.Next() {
+		blogPost := domain.BlogPost{}
+		err := json.Unmarshal(iter.Value(), &blogPost)
+		if err != nil {
+			log.Println("failed to unmarshal blog post", err.Error())
+		}
+		if blogPost.Published {
+			blogs = append(blogs, blogPost)
+		}
+	}
+	iter.Release()
+	err := iter.Error()
+	if err != nil {
+		log.Println(err)
+	}
+	return blogs
+}
+
 func GetBlogs() []domain.BlogPost {
 	iter := db.NewIterator(util.BytesPrefix([]byte(blogPrefix)), nil)
 	blogs := []domain.BlogPost{}

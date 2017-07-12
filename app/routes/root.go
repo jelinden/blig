@@ -6,12 +6,11 @@ import (
 
 	"github.com/jelinden/blig/app/db"
 	"github.com/jelinden/blig/app/domain"
-	"github.com/jelinden/blig/app/util"
 	"github.com/julienschmidt/httprouter"
 )
 
 func Root(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	blogs := util.OnlyPublished(db.GetBlogs())
+	blogs := db.GetPublishedBlogs()
 	sort.Sort(domain.TimeSlice(blogs))
 	renderTemplateRoot(w, "root",
 		domain.Blog{
