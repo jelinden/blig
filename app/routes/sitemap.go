@@ -26,7 +26,7 @@ func Sitemap(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	sort.Sort(domain.TimeSlice(blogs))
 	for _, blog := range blogs {
 		sitemap.Add(s, &sitemap.URL{
-			Loc:        mainURL + "/" + blog.Slug + "/" + blog.ID,
+			Loc:        mainURL + "/blog/" + blog.Slug + "/" + blog.ID,
 			LastMod:    &blog.Modified,
 			ChangeFreq: sitemap.Daily,
 		})
