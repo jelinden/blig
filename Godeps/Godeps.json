@@ -4,6 +4,10 @@
 	"GodepVersion": "v79",
 	"Deps": [
 		{
+			"ImportPath": "github.com/davecgh/go-spew/spew",
+			"Rev": "5215b55f46b2b919f50a1df0eaa5886afe4e3b3d"
+		},
+		{
 			"ImportPath": "github.com/golang/snappy",
 			"Rev": "d6668316e43571d7dde95be6fd077f96de002f8b"
 		},
@@ -21,8 +25,17 @@
 			"Rev": "4ac6f27528d0a3f2a59e0b0a6f6b3ff0bb89fe20"
 		},
 		{
+			"ImportPath": "github.com/pmezard/go-difflib/difflib",
+			"Rev": "792786c7400a136282c1664665ae0a8db921c6c2"
+		},
+		{
 			"ImportPath": "github.com/shurcooL/sanitized_anchor_name",
-			"Rev": "10ef21a441db47d8b13ebcc5fd2310f636973c77"
+			"Rev": "86672fcb3f950f35f2e675df2240550f2a50762f"
+		},
+		{
+			"ImportPath": "github.com/stretchr/testify/assert",
+			"Comment": "v1.1.3-18-g8d64eb7",
+			"Rev": "8d64eb7173c7753d6419fd4a9caf057398611364"
 		},
 		{
 			"ImportPath": "github.com/syndtr/goleveldb/leveldb",
@@ -103,8 +116,8 @@
 		},
 		{
 			"ImportPath": "gopkg.in/russross/blackfriday.v2",
-			"Comment": "v1.4-182-g70c446a",
-			"Rev": "70c446a327c4e69c0f661dc092d9729c3af7472c"
+			"Comment": "v2.0.0-1-g187c33f",
+			"Rev": "187c33ff049bddf24fc5c5b82facfdd62813a552"
 		}
 	]
 }
