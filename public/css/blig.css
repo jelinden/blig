@@ -6,7 +6,7 @@
   -webkit-text-size-adjust: none;
   -webkit-font-smoothing: antialiased;
 }
-a:link, a:visited {
+a:link, a:visited, a:hover {
   text-decoration:  none;
 }
 body {

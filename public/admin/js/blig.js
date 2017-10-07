@@ -63,7 +63,7 @@ function debounce(func, threshold, execAsap) {
 function send(blogId, blogTitle, blogText) {
     xhr.open('POST', '/admin/push/post/' + blogId, true);
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    xhr.send('blogId=' + blogId+ '&blogTitle=' + blogTitle + '&blogText=' + blogText);
+    xhr.send('blogId=' + blogId+ '&blogTitle=' + encodeURIComponent(blogTitle) + '&blogText=' + encodeURIComponent(blogText));
 }
 
 if (document.getElementById("publish") !== null) {
@@ -75,11 +75,11 @@ function publish() {
     blogText = document.getElementById("blogText").value;
     xhrPublish.open('POST', '/admin/push/publish/' + blogId, true);
     xhrPublish.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    xhrPublish.send('blogId=' + blogId+ '&blogTitle=' + blogTitle + '&blogText=' + blogText);
+    xhrPublish.send('blogId=' + blogId+ '&blogTitle=' + encodeURIComponent(blogTitle) + '&blogText=' + encodeURIComponent(blogText));
 }
 
 xhrPublish.onload = function() {
-    document.getElementById("published").innerHTML = this.responseText;
+    document.getElementById("published").innerHTML = decodeURIComponent(this.responseText);
 };
 
 if (document.getElementById("blogName") !== null) {
@@ -90,7 +90,7 @@ function saveBlogName() {
     blogTitle = document.getElementById("blogTitle").value;
     xhrName.open('POST', '/admin/save/blogname', true);
     xhrName.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    xhrName.send('blogName=' + blogTitle);
+    xhrName.send('blogName=' + encodeURIComponent(blogTitle));
 }
 
 window.addEventListener("load", function(event) {

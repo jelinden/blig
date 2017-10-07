@@ -8,6 +8,7 @@ import (
 	"os"
 	"regexp"
 	"sort"
+	"strings"
 	"time"
 
 	"github.com/jelinden/blig/app/db"
@@ -52,57 +53,19 @@ func Index(w http.ResponseWriter, r *http.Request) {
 }
 
 func Post(w http.ResponseWriter, r *http.Request) {
-	blogText := r.FormValue("blogText")
-	blogTitle := r.FormValue("blogTitle")
-	unsafe := blackfriday.Run([]byte(blogText))
-	sanitized := p.SanitizeBytes(unsafe)
-	html := []byte(util.ImgClass(string(sanitized)))
-	var id = r.FormValue("blogId")
-	if id == "" {
-		id, _ = shortid.Generate()
-	}
-	oldPost := db.GetBlogWithID(id)
-	blogPost := domain.BlogPost{
-		ID:        id,
-		Title:     string(p.SanitizeBytes([]byte(blogTitle))),
-		Slug:      util.Slugify(blogTitle),
-		Markdown:  blogText,
-		Post:      template.HTML(html),
-		Modified:  time.Now().UTC(),
-		Published: oldPost.Published,
-	}
-	if !oldPost.Date.IsZero() {
-		blogPost.Date = oldPost.Date
-	}
+	blogPost := sanitizeBlogPost(r)
 	if len(blogPost.Title) > 5 {
 		db.SaveBlog(blogPost)
 	}
-	w.Write(html)
+	w.Write([]byte(blogPost.Post))
 }
 
 func Publish(w http.ResponseWriter, r *http.Request) {
-	unsafe := blackfriday.Run([]byte(r.FormValue("blogText")))
-	sanitized := p.SanitizeBytes(unsafe)
-	html := []byte(util.ImgClass(string(sanitized)))
-	var id = r.FormValue("blogId")
-	if id == "" {
-		id, _ = shortid.Generate()
-	}
-	oldPost := db.GetBlogWithID(id)
-	blogPost := domain.BlogPost{
-		ID:        id,
-		Title:     string(p.SanitizeBytes([]byte(r.FormValue("blogTitle")))),
-		Slug:      util.Slugify(r.FormValue("blogTitle")),
-		Post:      template.HTML(html),
-		Markdown:  oldPost.Markdown,
-		Modified:  time.Now().UTC(),
-		Published: true,
-	}
-	if !oldPost.Date.IsZero() {
-		blogPost.Date = oldPost.Date
-	} else {
+	blogPost := sanitizeBlogPost(r)
+	if blogPost.Date.IsZero() {
 		blogPost.Date = time.Now().UTC()
 	}
+	blogPost.Published = true
 	if len(blogPost.Title) < 5 {
 		w.Write([]byte("Title was not long enough"))
 	} else {
@@ -183,4 +146,31 @@ func renderTemplateWithoutParams(w http.ResponseWriter, tmpl string) {
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
+}
+
+func sanitizeBlogPost(r *http.Request) domain.BlogPost {
+	blogTitle := r.FormValue("blogTitle")
+	blogText := r.FormValue("blogText")
+	blogText = strings.Replace(blogText, "\t", "    ", -1)
+	unsafeText := blackfriday.Run([]byte(blogText))
+	sanitized := p.SanitizeBytes(unsafeText)
+
+	html := []byte(util.ImgClass(string(sanitized)))
+	var id = r.FormValue("blogId")
+	if id == "" {
+		id, _ = shortid.Generate()
+	}
+	oldPost := db.GetBlogWithID(id)
+	blogPost := domain.BlogPost{
+		ID:       id,
+		Title:    string(p.SanitizeBytes([]byte(blogTitle))),
+		Slug:     util.Slugify(blogTitle),
+		Post:     template.HTML(html),
+		Markdown: blogText,
+		Modified: time.Now().UTC(),
+	}
+	if !oldPost.Date.IsZero() {
+		blogPost.Date = oldPost.Date
+	}
+	return blogPost
 }

@@ -127,3 +127,6 @@ label {
     text-transform: uppercase;
     color: #696969;
 }
+code {
+    font-size: 0.8rem !important;
+  }
