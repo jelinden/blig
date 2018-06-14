@@ -26,6 +26,7 @@ func main() {
 	router.ServeFiles("/admin/static/*filepath", fs)
 	fsStatic := util.JustFilesFilesystem{Fs: http.Dir("public/")}
 	router.Handler("GET", "/static/*filepath", http.StripPrefix("/static", util.GH(http.FileServer(fsStatic))))
+	router.Handler("GET", "/robots.txt", util.GH(http.FileServer(fsStatic)))
 	router.GET("/admin/", routes.AuthHandler(http.HandlerFunc(routes.AdminRoot)))
 	router.GET("/admin/post/new", routes.AuthHandler(http.HandlerFunc(routes.New)))
 	router.GET("/admin/post/id/:id", routes.AuthHandler(http.HandlerFunc(routes.Index)))
