@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"strings"
 	"sync"
+	"time"
 
 	"github.com/julienschmidt/httprouter"
 )
@@ -31,6 +32,12 @@ func GH(fn http.Handler) http.Handler {
 			return
 		}
 		w.Header().Set("content-encoding", "gzip")
+		var lastModifiedTimeStamp = time.Now().Add(6 * time.Hour).Format(http.TimeFormat)
+		var noBrowserCache = time.Now().Add(-6 * time.Hour).Format(http.TimeFormat)
+		w.Header().Add("Cache-Control", "no-store, private, no-cache, must-revalidate")
+		w.Header().Add("Expires", noBrowserCache)
+		w.Header().Add("Last-Modified", lastModifiedTimeStamp)
+		w.Header().Add("Pragma", "no-cache")
 
 		gz := zippers.Get().(*gzip.Writer)
 		defer zippers.Put(gz)
@@ -51,6 +58,12 @@ func MakeGzipHandler(fn httprouter.Handle) httprouter.Handle {
 			return
 		}
 		w.Header().Set("content-encoding", "gzip")
+		var lastModifiedTimeStamp = time.Now().Add(6 * time.Hour).Format(http.TimeFormat)
+		var noBrowserCache = time.Now().Add(-6 * time.Hour).Format(http.TimeFormat)
+		w.Header().Add("Cache-Control", "no-store, private, no-cache, must-revalidate")
+		w.Header().Add("Expires", noBrowserCache)
+		w.Header().Add("Last-Modified", lastModifiedTimeStamp)
+		w.Header().Add("Pragma", "no-cache")
 
 		gz := zippers.Get().(*gzip.Writer)
 		defer zippers.Put(gz)
