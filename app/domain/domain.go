@@ -23,6 +23,7 @@ type BlogPost struct {
 	Markdown  string
 	Date      time.Time
 	Modified  time.Time
+	Version   int
 	Published bool
 }
 
