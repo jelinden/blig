@@ -121,6 +121,7 @@ func getWithID(id string) []byte {
 }
 
 func SaveBlog(blogPost domain.BlogPost) {
+	blogPost.Version++
 	j, _ := json.Marshal(blogPost)
 	err := db.Put([]byte(blogPrefix+blogPost.ID), j, nil)
 	if err != nil {
