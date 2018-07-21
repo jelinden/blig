@@ -162,12 +162,13 @@ func sanitizeBlogPost(r *http.Request) domain.BlogPost {
 	}
 	oldPost := db.GetBlogWithID(id)
 	blogPost := domain.BlogPost{
-		ID:       id,
-		Title:    string(p.SanitizeBytes([]byte(blogTitle))),
-		Slug:     util.Slugify(blogTitle),
-		Post:     template.HTML(html),
-		Markdown: blogText,
-		Modified: time.Now().UTC(),
+		ID:        id,
+		Title:     string(p.SanitizeBytes([]byte(blogTitle))),
+		Slug:      util.Slugify(blogTitle),
+		Post:      template.HTML(html),
+		Markdown:  blogText,
+		Modified:  time.Now().UTC(),
+		Published: oldPost.Published,
 	}
 	if !oldPost.Date.IsZero() {
 		blogPost.Date = oldPost.Date
