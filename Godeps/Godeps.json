@@ -1,6 +1,6 @@
 {
 	"ImportPath": "github.com/jelinden/blig",
-	"GoVersion": "go1.8",
+	"GoVersion": "go1.11",
 	"GodepVersion": "v79",
 	"Deps": [
 		{
