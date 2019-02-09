@@ -25,6 +25,8 @@ var p = bluemonday.UGCPolicy()
 
 func init() {
 	p.AllowAttrs("class").Matching(regexp.MustCompile("^language-[a-zA-Z0-9]+$")).OnElements("code")
+	p.AllowAttrs("width", "height", "autoplay", "preload", "loop", "controls").OnElements("video")
+	p.AllowAttrs("src", "type").OnElements("source")
 }
 
 func New(w http.ResponseWriter, r *http.Request) {
