@@ -16,3 +16,5 @@ require (
 	golang.org/x/text v0.0.0-20170603003618-ccbd3f782212
 	gopkg.in/russross/blackfriday.v2 v2.0.0-20170905170819-187c33ff049b
 )
+
+go 1.13
