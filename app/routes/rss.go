@@ -15,7 +15,7 @@ import (
 func RSS(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	feed := &feeds.Feed{
 		Title:       db.GetBlogName(),
-		Link:        &feeds.Link{Href: "https://jelinden.fi"},
+		Link:        &feeds.Link{Href: "https://www.jelinden.fi"},
 		Description: "Programming blog",
 		Created:     time.Now(),
 	}
@@ -27,7 +27,7 @@ func RSS(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		if i < 5 {
 			feed.Items = append(feed.Items, &feeds.Item{
 				Title:       blog.Title,
-				Link:        &feeds.Link{Href: "https://jelinden.fi/blog/" + blog.Slug + "/" + blog.ID},
+				Link:        &feeds.Link{Href: "https://www.jelinden.fi/blog/" + blog.Slug + "/" + blog.ID},
 				Description: blog.Title,
 				Created:     blog.Date,
 				Id:          blog.ID,

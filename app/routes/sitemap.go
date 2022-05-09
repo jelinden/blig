@@ -12,7 +12,7 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-const mainURL = "https://jelinden.fi"
+const mainURL = "https://www.jelinden.fi"
 
 func Sitemap(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	s := sitemap.New()
