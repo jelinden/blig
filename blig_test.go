@@ -69,7 +69,7 @@ func TestLoad(t *testing.T) {
 	}
 	took := time.Now().Sub(beginning).Seconds()
 	amountRequests := math.Floor(requests * (1 / took))
-	fmt.Println("\n\n ******** Made", requests, "requests in", took, "seconds (", amountRequests, "req/s ) ********\n")
+	fmt.Println("\n\n ******** Made", requests, "requests in", took, "seconds (", amountRequests, "req/s ) ********")
 }
 
 var initConnection = 0
