@@ -1,4 +1,4 @@
-# github.com/davecgh/go-spew v0.0.0-20151105211317-5215b55f46b2
+# github.com/davecgh/go-spew v1.1.1
 github.com/davecgh/go-spew/spew
 # github.com/golang/snappy v0.0.0-20160519033420-d6668316e435
 github.com/golang/snappy
@@ -12,11 +12,10 @@ github.com/microcosm-cc/bluemonday
 github.com/pmezard/go-difflib/difflib
 # github.com/shurcooL/sanitized_anchor_name v0.0.0-20170918181015-86672fcb3f95
 github.com/shurcooL/sanitized_anchor_name
-# github.com/stretchr/testify v0.0.0-20160524234229-8d64eb7173c7
+# github.com/stretchr/testify v1.5.1
 github.com/stretchr/testify/assert
 # github.com/syndtr/goleveldb v0.0.0-20160425020131-cfa635847112
 github.com/syndtr/goleveldb/leveldb
-github.com/syndtr/goleveldb/leveldb/util
 github.com/syndtr/goleveldb/leveldb/cache
 github.com/syndtr/goleveldb/leveldb/comparer
 github.com/syndtr/goleveldb/leveldb/errors
@@ -27,16 +26,19 @@ github.com/syndtr/goleveldb/leveldb/memdb
 github.com/syndtr/goleveldb/leveldb/opt
 github.com/syndtr/goleveldb/leveldb/storage
 github.com/syndtr/goleveldb/leveldb/table
+github.com/syndtr/goleveldb/leveldb/util
 # github.com/ventu-io/go-shortid v0.0.0-20170305092000-935de6796a71
 github.com/ventu-io/go-shortid
-# golang.org/x/crypto v0.0.0-20170317163734-459e26527287
+# golang.org/x/crypto v0.1.0
 golang.org/x/crypto/bcrypt
 golang.org/x/crypto/blowfish
-# golang.org/x/net v0.0.0-20170602201553-e4fa1c5465ad
+# golang.org/x/net v0.7.0
 golang.org/x/net/html
 golang.org/x/net/html/atom
-# golang.org/x/text v0.0.0-20170603003618-ccbd3f782212
-golang.org/x/text/unicode/norm
+# golang.org/x/text v0.7.0
 golang.org/x/text/transform
+golang.org/x/text/unicode/norm
 # gopkg.in/russross/blackfriday.v2 v2.0.0-20170905170819-187c33ff049b
 gopkg.in/russross/blackfriday.v2
+# gopkg.in/yaml.v2 v2.4.0
+gopkg.in/yaml.v2
