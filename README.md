@@ -28,7 +28,7 @@ github.com/syndtr/goleveldb/leveldb
 
 ### Others
 
-gopkg.in/russross/blackfriday.v2 - markdown processor
+github.com/russross/blackfriday/v2 - markdown processor
 
 github.com/julienschmidt/httprouter - fast router
 

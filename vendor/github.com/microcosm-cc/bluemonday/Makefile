@@ -3,30 +3,35 @@
 #   all:          Builds the code locally after testing
 #
 #   fmt:          Formats the source files
+#   fmt-check:    Check if the source files are formated
 #   build:        Builds the code locally
 #   vet:          Vets the code
 #   lint:         Runs lint over the code (you do not need to fix everything)
 #   test:         Runs the tests
 #   cover:        Gives you the URL to a nice test coverage report
-#   clean:        Deletes the built file (if it exists)
 #
 #   install:      Builds, tests and installs the code locally
 
-.PHONY: all fmt build vet lint test cover clean install
+GOFILES_NOVENDOR = $(shell find . -type f -name '*.go' -not -path "./vendor/*" -not -path "./.git/*")
+
+.PHONY: all fmt build vet lint test cover install
 
 # The first target is always the default action if `make` is called without
-# args we clean, build and install into $GOPATH so that it can just be run
+# args we build and install into $GOPATH so that it can just be run
 
-all: clean fmt vet test install
+all: fmt vet test install
 
 fmt:
-	@gofmt -w ./$*
+	@gofmt -s -w ${GOFILES_NOVENDOR}
 
-build: clean
+fmt-check:
+	@([ -z "$(shell gofmt -d $(GOFILES_NOVENDOR) | head)" ]) || (echo "Source is unformatted"; exit 1)
+
+build:
 	@go build
 
 vet:
-	@vet *.go
+	@go vet
 
 lint:
 	@golint *.go
@@ -39,8 +44,5 @@ cover:
 	@go test -coverprofile=$(COVERAGE_FILE) && \
 	cover -html=$(COVERAGE_FILE) && rm $(COVERAGE_FILE)
 
-clean:
-	@find $(GOPATH)/pkg/*/github.com/microcosm-cc -name bluemonday.a -delete
-
-install: clean
-	@go install
+install:
+	@go install ./...

@@ -1,22 +1,40 @@
-# github.com/davecgh/go-spew v0.0.0-20151105211317-5215b55f46b2
+# github.com/aymerick/douceur v0.2.0
+## explicit
+github.com/aymerick/douceur/css
+github.com/aymerick/douceur/parser
+# github.com/davecgh/go-spew v1.1.1
+## explicit
 github.com/davecgh/go-spew/spew
-# github.com/golang/snappy v0.0.0-20160519033420-d6668316e435
+# github.com/golang/snappy v0.0.0-20180518054509-2e65f85255db
+## explicit
 github.com/golang/snappy
-# github.com/gorilla/feeds v0.0.0-20170611032206-fa8f5548eedb
+# github.com/gorilla/css v1.0.0
+## explicit
+github.com/gorilla/css/scanner
+# github.com/gorilla/feeds v1.1.1
+## explicit
 github.com/gorilla/feeds
-# github.com/julienschmidt/httprouter v0.0.0-20160219154026-77366a47451a
+# github.com/julienschmidt/httprouter v1.3.0
+## explicit; go 1.7
 github.com/julienschmidt/httprouter
-# github.com/microcosm-cc/bluemonday v0.0.0-20151102182000-4ac6f27528d0
+# github.com/kr/pretty v0.3.1
+## explicit; go 1.12
+# github.com/microcosm-cc/bluemonday v1.0.23
+## explicit; go 1.19
 github.com/microcosm-cc/bluemonday
+github.com/microcosm-cc/bluemonday/css
 # github.com/pmezard/go-difflib v1.0.0
+## explicit
 github.com/pmezard/go-difflib/difflib
-# github.com/shurcooL/sanitized_anchor_name v0.0.0-20170918181015-86672fcb3f95
-github.com/shurcooL/sanitized_anchor_name
-# github.com/stretchr/testify v0.0.0-20160524234229-8d64eb7173c7
+# github.com/russross/blackfriday/v2 v2.1.0
+## explicit
+github.com/russross/blackfriday/v2
+# github.com/stretchr/testify v1.8.2
+## explicit; go 1.13
 github.com/stretchr/testify/assert
-# github.com/syndtr/goleveldb v0.0.0-20160425020131-cfa635847112
+# github.com/syndtr/goleveldb v1.0.0
+## explicit
 github.com/syndtr/goleveldb/leveldb
-github.com/syndtr/goleveldb/leveldb/util
 github.com/syndtr/goleveldb/leveldb/cache
 github.com/syndtr/goleveldb/leveldb/comparer
 github.com/syndtr/goleveldb/leveldb/errors
@@ -27,16 +45,22 @@ github.com/syndtr/goleveldb/leveldb/memdb
 github.com/syndtr/goleveldb/leveldb/opt
 github.com/syndtr/goleveldb/leveldb/storage
 github.com/syndtr/goleveldb/leveldb/table
-# github.com/ventu-io/go-shortid v0.0.0-20170305092000-935de6796a71
-github.com/ventu-io/go-shortid
-# golang.org/x/crypto v0.0.0-20170317163734-459e26527287
+github.com/syndtr/goleveldb/leveldb/util
+# github.com/teris-io/shortid v0.0.0-20220617161101-71ec9f2aa569
+## explicit; go 1.18
+github.com/teris-io/shortid
+# golang.org/x/crypto v0.7.0
+## explicit; go 1.17
 golang.org/x/crypto/bcrypt
 golang.org/x/crypto/blowfish
-# golang.org/x/net v0.0.0-20170602201553-e4fa1c5465ad
+# golang.org/x/net v0.8.0
+## explicit; go 1.17
 golang.org/x/net/html
 golang.org/x/net/html/atom
-# golang.org/x/text v0.0.0-20170603003618-ccbd3f782212
-golang.org/x/text/unicode/norm
+# golang.org/x/text v0.8.0
+## explicit; go 1.17
 golang.org/x/text/transform
-# gopkg.in/russross/blackfriday.v2 v2.0.0-20170905170819-187c33ff049b
-gopkg.in/russross/blackfriday.v2
+golang.org/x/text/unicode/norm
+# gopkg.in/yaml.v3 v3.0.1
+## explicit
+gopkg.in/yaml.v3

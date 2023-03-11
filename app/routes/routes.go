@@ -16,8 +16,8 @@ import (
 	"github.com/jelinden/blig/app/util"
 	"github.com/julienschmidt/httprouter"
 	"github.com/microcosm-cc/bluemonday"
-	"github.com/ventu-io/go-shortid"
-	blackfriday "gopkg.in/russross/blackfriday.v2"
+	blackfriday "github.com/russross/blackfriday/v2"
+	"github.com/teris-io/shortid"
 )
 
 var templates = template.Must(template.ParseGlob("public/tmpl/*"))
